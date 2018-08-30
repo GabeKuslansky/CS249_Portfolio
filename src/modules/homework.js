@@ -1,12 +1,16 @@
+import fs from 'fs';
+import util from 'util';
 const readFile = util.promisify(fs.readFile);
 const readdir = util.promisify(fs.readdir);
 
-export async function retrieveAllHomeworks() {
+export async function fetchAllHomeworks() {
+    console.log('test');
     const homeworks = await readdir('./homeworks');
+    console.log(homeworks);
     return homeworks;
 }
 
-export async function retrieveHomework(filename) {
- const homework = await readFile(`./homeworks/${filename}`);
+export async function fetchHomework(filename) {
+ const homework = await readFile(`./homeworks/${filename}.txt`);
  return homework;
 }
