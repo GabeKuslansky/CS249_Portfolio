@@ -1,5 +1,9 @@
 'use strict';
 
+var _config = require('config');
+
+var _config2 = _interopRequireDefault(_config);
+
 var _express = require('express');
 
 var _express2 = _interopRequireDefault(_express);
@@ -16,5 +20,8 @@ var server = new _http.Server(app);
 
 app.use(_routing.routing);
 
-server.listen(3000);
+var port = process.env.PORT || _config2.default.get('port');
+server.listen(port, function () {
+  console.log('CS249 Portfolio running on port ' + port + ', press ^C to exit.');
+});
 //# sourceMappingURL=server.js.map

@@ -1,3 +1,4 @@
 {
-    "directory": "/school/CS249"
+    "directory": "/school/CS249",
+    "port": 8081
 }
