@@ -12,7 +12,7 @@ export async function fetchAllHomeworks() {
         files.forEach(x => {
             const homeworkObject = {
                 filename: x,
-                link: `./homeworks/${x}`
+                link: `../api/downloadHomework/${dir}/${x}`
             };
             homeworks.push(homeworkObject);
         });
@@ -21,7 +21,12 @@ export async function fetchAllHomeworks() {
     return formattedHomeworks;
 }
 
-export async function fetchHomework(filename) {
-    const homework = await readFile(`./homeworks/${filename}.txt`);
-    return homework;
+export async function fetchHomework(assignment, filename) {
+    const filepath = `./homeworks/${assignment}/${filename}`;
+    try {
+        const homework = await readFile('./homeworks/assignment1/test.txt');
+        return homework;
+    } catch (e) {
+        console.log(e);
+    }
 }

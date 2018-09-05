@@ -13,9 +13,9 @@ router.get(`${dir}/`, async(req, res) => {
     });
 });
 
-router.get(`${dir}/api/getHomework/:homework`, async(req, res) => {
-    const homework = await fetchHomework(req.params.homework);
-    res.send(homework);
-})
+router.get(`/api/downloadHomework/:assignment/:file`, async (req, res) => {
+    const homework = await fetchHomework(req.params.assignment, req.params.file);
+    res.download(homework, homework);
+});
 
 export const routing = router;
