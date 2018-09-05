@@ -1,0 +1,15 @@
+<div>
+    {{#each homeworks}}
+    <div class='assignment'>
+        <div class='assignment-header'>
+            <i class='fas fa-folder'></i> Assignment {{@index}}
+        </div>
+    <br>
+        {{#each this as |homework|}} 
+            <i class='fab fa-java'></i> <a href='../downloadHomework/{{homework.link}}'>{{homework.filename}}</a>
+            <br>
+        {{/each}}
+        <br>
+        </div>
+    {{/each}}
+</div>

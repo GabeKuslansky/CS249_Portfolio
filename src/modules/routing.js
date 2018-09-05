@@ -6,14 +6,12 @@ console.log(dir);
 
 const router = Router();
 
-router.get(`${dir}/`, (req, res) => {
-    res.send('hello');
-});
-
-router.get(`${dir}/api/getAllHomeworks`, async(req, res) => {
+router.get(`${dir}/`, async(req, res) => {
     const homeworks = await fetchAllHomeworks();
-    res.send(homeworks);
-    res.status(200);
+    res.render('structure', {
+        homeworks,
+        title: `${homeworks.length} homeworks - CS249 Portfolio`
+    });
 });
 
 router.get(`${dir}/api/getHomework/:homework`, async(req, res) => {
