@@ -2,7 +2,6 @@ import config from 'config';
 import { fetchHomework, fetchAllHomeworks } from './index';
 import { Router } from 'express';
 const dir = config.get('directory');
-console.log(dir);
 
 const router = Router();
 

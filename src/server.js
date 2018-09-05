@@ -5,15 +5,15 @@ import exphbs from 'express-handlebars';
 import { routing } from './modules';
 
 const app = express();
-
 const server = new Server(app);
+app.use('/css', express.static('static/css'));
 
-app.use(routing);
-app.use('/static', express.static('static'));
 
 // Handlebars configuration
 app.engine('.hbs', exphbs({extname: '.hbs', defaultLayout: 'default'}));
 app.set('view engine', '.hbs');
-app.set('views', path.join('./views'));
+app.set('views', './views');
+
+app.use(routing);
 
 server.listen(8081);
