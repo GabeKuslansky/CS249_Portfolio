@@ -20,13 +20,3 @@ export async function fetchAllHomeworks() {
     }
     return formattedHomeworks;
 }
-
-export async function fetchHomework(assignment, filename) {
-    const filepath = `./homeworks/${assignment}/${filename}`;
-    try {
-        const homework = await readFile('./homeworks/assignment1/test.txt');
-        return homework;
-    } catch (e) {
-        console.log(e);
-    }
-}

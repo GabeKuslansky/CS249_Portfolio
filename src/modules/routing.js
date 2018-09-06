@@ -1,11 +1,15 @@
 import config from 'config';
-import { fetchHomework, fetchAllHomeworks } from './index';
+import fs from 'fs';
+import util from 'util';
 import { Router } from 'express';
+import { fetchHomework, fetchAllHomeworks } from './index';
+
 const dir = config.get('directory');
+const readFile = util.promisify(fs.readFile);
 
 const router = Router();
 
-router.get(`${dir}/`, async(req, res) => {
+router.get(`${dir}/`, async (req, res) => {
     const homeworks = await fetchAllHomeworks();
     res.render('structure', {
         homeworks,
@@ -13,9 +17,10 @@ router.get(`${dir}/`, async(req, res) => {
     });
 });
 
-router.get(`/api/downloadHomework/:assignment/:file`, async (req, res) => {
-    const homework = await fetchHomework(req.params.assignment, req.params.file);
-    res.download(homework, homework);
+router.get(`/api/downloadHomework/:assignment/:file`, (req, res) => {
+    const { assignment, file } = req.params;
+    const filepath = `./homeworks/${assignment}/${file}`;
+    res.download(filepath, file);
 });
 
 export const routing = router;
