@@ -12,7 +12,7 @@ export async function fetchAllHomeworks() {
         files.forEach(x => {
             const homeworkObject = {
                 filename: x,
-                link: `../api/downloadHomework/${dir}/${x}`
+                link: `./CS249/downloadHomework/${dir}/${x}`
             };
             homeworks.push(homeworkObject);
         });

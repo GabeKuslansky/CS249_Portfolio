@@ -17,7 +17,7 @@ router.get(`${dir}/`, async (req, res) => {
     });
 });
 
-router.get(`/api/downloadHomework/:assignment/:file`, (req, res) => {
+router.get(`${dir}/downloadHomework/:assignment/:file`, (req, res) => {
     const { assignment, file } = req.params;
     const filepath = `./homeworks/${assignment}/${file}`;
     res.download(filepath, file);
