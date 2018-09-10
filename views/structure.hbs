@@ -19,3 +19,10 @@
     </div>
     {{/each}}
 </div>
+
+<form action='/school/CS249/upload/' method='POST' enctype='multipart/form-data' class='upload'>
+    <label for='file' id='uploadButton' class='homeworkItem'>Upload</label>
+    <span id='fileSelected'></span>
+    <input multiple id='file' name='file' type='file' />
+    <input type='submit' value='Upload homework'>
+</form>

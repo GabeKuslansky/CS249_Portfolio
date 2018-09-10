@@ -6,7 +6,6 @@ import { routing } from './modules';
 
 const app = express();
 const server = new Server(app);
-app.use('/css', express.static('static/css'));
 
 
 // Handlebars configuration
