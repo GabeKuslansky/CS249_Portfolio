@@ -29,13 +29,17 @@ router.get(`${dir}/downloadHomework/:assignment/:file`, (req, res) => {
 });
 
 router.post(`${dir}/upload`, upload.array('file'), async (req, res) => {
-    const directories = await fetchAllHomeworks();
-    const assignmentName = `assignment${directories.length + 1}`;
-    fs.mkdirSync(`homeworks/${assignmentName}`);
-    req.files.forEach(file => {
-        fs.writeFileSync(`homeworks/${assignmentName}/${file.originalname}`, file);
-    });
-    res.redirect(dir);
+    try {
+        const directories = await fetchAllHomeworks();
+        const assignmentName = `assignment${directories.length + 1}`;
+        fs.mkdirSync(`homeworks/${assignmentName}`);
+        req.files.forEach(file => {
+            fs.writeFileSync(`homeworks/${assignmentName}/${file.originalname}`, file);
+        });
+        res.redirect(dir);
+    } catch (e) {
+        throw e;
+    }
 });
 
 export const routing = router;
