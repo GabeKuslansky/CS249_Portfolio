@@ -10,7 +10,8 @@
             <div class='homeworkItem'>
                 <span class='homeworkName'><i class='fab fa-java'></i> {{homework.filename}}</span>
                 <span class='homeworkIcons'>
-                    <a href={{this.link}}><i class='fas fa-download'></i></a>
+                    <a target='_blank' href={{this.viewLink}}><i class='fas fa-eye'></i></a>
+                    <a href={{this.downloadLink}}><i class='fas fa-download'></i></a>
                 </span>
             </div>
             {{/each}}

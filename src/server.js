@@ -17,6 +17,8 @@ app.engine('.hbs', exphbs({
 app.set('view engine', '.hbs');
 app.set('views', './views');
 
+app.use('/homeworks', express.static('homeworks'))
+
 app.use(routing);
 
 server.listen(8081);

@@ -8,7 +8,7 @@ import { fetchHomework, fetchAllHomeworks } from './index';
 const dir = config.get('directory');
 const readFile = util.promisify(fs.readFile);
 const readdir = util.promisify(fs.readdir);
-const upload = multer();
+const upload = multer().array('file');
 
 const router = Router();
 
@@ -26,8 +26,7 @@ router.get(`${dir}/downloadHomework/:assignment/:file`, (req, res) => {
     res.download(filepath, file);
 });
 
-router.post(`${dir}/upload`, upload.array('file'), async (req, res) => {
-    console.log(req.files);
+router.post(`${dir}/upload`, upload, async (req, res) => {
     try {
         const directories = await fetchAllHomeworks();
         const assignmentName = `assignment${directories.length + 1}`;
@@ -39,6 +38,12 @@ router.post(`${dir}/upload`, upload.array('file'), async (req, res) => {
     } catch (e) {
         throw e;
     }
+});
+
+router.get(`${dir}/viewHomework/:assignment/:file`, (req, res) => {
+    const { assignment, file } = req.params;
+    const homeworkPath = `homeworks/${assignment}/${file}`;
+    res.sendFile(homeworkPath)
 });
 
 export const routing = router;

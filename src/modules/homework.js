@@ -13,7 +13,8 @@ export async function fetchAllHomeworks() {
         files.forEach(x => {
             const homeworkObject = {
                 filename: x,
-                link: `./CS249/downloadHomework/${dir}/${x}`
+                downloadLink: `./CS249/downloadHomework/${dir}/${x}`,
+                viewLink: `../homeworks/${dir}/${x}`
             };
             homeworks.push(homeworkObject);
         });
